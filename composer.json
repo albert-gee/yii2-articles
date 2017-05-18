@@ -1,0 +1,28 @@
+{
+  "name": "xalberteinsteinx/yii2-articles",
+  "description": "Articles module for Yii2 framework",
+  "keywords": ["yii2", "articles", "module"],
+  "type": "yii2-extension",
+  "authors": [
+    {
+      "name": "Albert Gainutdinov",
+      "email": "xalbert.einsteinx@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "yiisoft/yii2": ">=2.0.4",
+    "yiisoft/yii2-bootstrap": "*",
+    "yii2tech/ar-position": "*",
+
+    "black-lamp/yii2-multi-lang": "^1.0.0",
+    "black-lamp/yii2-imagable": "1.*",
+
+    "marqu3s/yii2-summernote": "1.0.0",
+  },
+  "autoload": {
+    "psr-4": {
+      "xalberteinsteinx\\articles\\": ""
+    }
+  }
+}

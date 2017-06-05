@@ -24,8 +24,8 @@ class Module extends \yii\base\Module
 
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['shop'] =
-            Yii::$app->i18n->translations['shop'] ??
+        Yii::$app->i18n->translations['articles'] =
+            Yii::$app->i18n->translations['articles'] ??
             [
                 'class'          => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en-US',

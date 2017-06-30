@@ -55,13 +55,21 @@ class CategoryController extends Controller
         return $this->render('index', ['categories' => $categories]);
     }
 
+    /**
+     * @param null $id
+     * @param null $languageId
+     * @return string|\yii\web\Response
+     */
     public function actionSave($id = null, $languageId = null)
     {
         $language = (!empty($languageId)) ? Language::findOne($languageId) : Language::getDefault();
         $category = (!empty($id)) ? ArticleCategory::findOne($id) : new ArticleCategory();
+
         $categoryTranslation = (!empty($category)) ?
-            ArticleCategoryTranslation::find()->where(['category_id' => $id, 'languageId' => $language->id])->one() :
-            new ArticleCategoryTranslation(['language_id' => $language->id]);
+            (
+                ArticleCategoryTranslation::find()->where(['category_id' => $id, 'language_id' => $language->id])->one() ??
+                new ArticleCategoryTranslation()
+            ) : new ArticleCategoryTranslation();
 
         if (\Yii::$app->request->isPost) {
             $post = \Yii::$app->request->post();
@@ -74,6 +82,7 @@ class CategoryController extends Controller
 
                 $categoryTranslation->load($post);
                 $categoryTranslation->category_id = $category->id;
+                $categoryTranslation->language_id = $language->id;
                 if ($categoryTranslation->validate()) $categoryTranslation->save();
 
                 \Yii::$app->session->setFlash('success', \Yii::t('articles', 'Data saved successfully'));
